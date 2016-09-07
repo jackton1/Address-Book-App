@@ -1,42 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Todo App</title>
+    <title>Address Book App</title>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/progress.css" type="text/css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 </head>
   <body>
-    <div>
-      <h1 align = "center" style="text-decoration:underline;margin-bottom:5%"> CONVERSION TIMELINE </h1>
-      <h1 align = "center">PHASE </h1>
-      <pre style='font-size: 28px;'> PLAN                  BUILD                 VALIDATE                    DEPLOY</pre>
-      <div class="meter">
-          <span style="width: 0%"></span>
-      </div>
-      <h4 style="float:left">Start Date: June 2016</h4>
-      <h4 style="float:right">Completion Date: September 2016</h4>
-   </div>
-    <div class="container">
-      <p style="display:none;">
-        <label for="new-task">Add Milestone</label><input id="new-task" type="text" onkeypress="handleKeyPress(event)"><button>Add</button>
-      </p>
-
-      <h3>Milestones</h3>
-      <ul id="incomplete-tasks">
-        <li><input type="checkbox"><label>PLAN</label><input type="text" value="Planning Phase"><button class="edit">Edit</button><button class="delete">Delete</button></li>
-        <li><input type="checkbox"><label>BUILD</label><input type="text" value="Building Phase"><button class="edit">Edit</button><button class="delete">Delete</button></li>
-        <li><input type="checkbox"><label>VALIDATE</label><input type="text"value="Validating Phase"><button class="edit">Edit</button><button class="delete">Delete</button></li>
-        <li><input type="checkbox"><label>DEPLOY</label><input type="text" value="Deploy Phase"><button class="edit">Edit</button><button class="delete">Delete</button></li>
+  <form class="container" onsubmit="event.preventDefault()">
+    <fieldset>
+      <legend>Add New Contacts</legend>
+        <label for="user-name">Name:</label>
+        <input id="user-name" type="text" name="username">
+        <label for="phone-num">Phone Number:</label>
+        <input type="tel" id="phone-num" pattern="[0-9]{10}" name="tel" title="Phone Number" placeholder="10 digit Number">
+        <button onclick="AddressBook.addContact()">Add</button>
+    </fieldset>
+  </form>
+      <label for="contacts">Contacts</label>
+      <select id="contacts" name="contacts[]" multiple="multiple" onchange="AddressBook.showContact(this);">
+          <option value="Paul" data-phoneNumber=6474911444>Paul</option>
+          <option value="John" data-phoneNumber=6474912444>John</option>
+      </select>
+      <ul id="contact-list">
+          <!--<li onclick="this.parentNode.removeChild(this);">-->
+              <!--<input type="hidden" name="contacts[]" value="Paul"/>-->
+              <!--Paul-->
+          <!--</li>-->
+          <!--<li onclick="this.parentNode.removeChild(this);">-->
+              <!--<input type="hidden" name="contacts[]" value="John"/>-->
+              <!--John-->
+          <!--</li>-->
       </ul>
-
-      <h3>Completed</h3>
-      <ul id="completed-tasks">
-      </ul>
-    </div>
-
+      <button onclick="AddressBook.deleteContact()">Delete</button>
     <script type="text/javascript" src="js/app.js"></script>
-
   </body>
 </html>

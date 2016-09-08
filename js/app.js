@@ -1,10 +1,5 @@
 //Built with only Javascript no Additional Plugins used
 
-
-
-
-
-
 //This function  creates a new instance of an object
 //Or uses the exiting instance changing the elem
 function $$(elem) {
@@ -22,7 +17,6 @@ $$.prototype = {
         return this;
     }
 };
-
 
 
 //var to store the AddressBook object
@@ -62,7 +56,7 @@ var AddressBook = {
             $$(lastNameInput).setAttr("id", "last-name").setAttr("type","text").setAttr("name","last_name");
             $$(phoneLabel).setAttr("for", "phone-num").setAttr("innerHTML","PhoneNumber: ");
             $$(phoneInput).setAttr("type","tel").setAttr("id","phone-num").setAttr("name","tel").setAttr("placeholder","10 digit Number");
-            $$(phoneInput).setAttr("maxLength","13");
+            $$(phoneInput).setAttr("maxLength","14");
             $$(button).setAttr("innerHTML","Add");
             var children = [legend, firstNameLabel, firstNameInput, lastNameLabel, lastNameInput, phoneLabel, phoneInput, button];
             for(var i=0 ; i < children.length; i++){
@@ -82,7 +76,7 @@ var AddressBook = {
             //Method to modify the phone number
             var phoneNumber = document.getElementById("phone-num");
             if ((event.keyCode > 47 && event.keyCode < 58) || (event.keyCode < 106 && event.keyCode > 95)) {
-                phoneNumber.value = phoneNumber.value.replace(/^(\d{3})(\d{3})(\d)+$/, "($1)$2-$3");
+                phoneNumber.value = phoneNumber.value.replace(/^(\d{3})(\d{3})(\d)+$/, "($1) $2-$3");
                 return true;
             }
             //remove all chars, except dash and digits
@@ -91,7 +85,7 @@ var AddressBook = {
         //Method to AddContact details to the table prompt the user with a red border indicating error with field data
         addContact: function () {
             //regular expression to check the pattern of the phone number
-            var re  = new RegExp("^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$");
+            var re  = new RegExp("^[(]{0,1}[0-9]{3}[)]{0,1}[-\\s\\.]{0,1}[0-9]{3}[-\\s\\.]{0,1}[0-9]{4}$");
             var tableBody = document.getElementById("contact-list");
             var firstName = document.getElementById("first-name");
             var lastName = document.getElementById("last-name");
